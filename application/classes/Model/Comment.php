@@ -13,6 +13,8 @@ Class Model_Comment extends Model
     public $dt_update;
     public $is_removed;
 
+    public $author;
+
     /**
      * Пустой конструктор для модели коментария, если нужно получить коментарий из базы, нужно пользоваться статическими
      * методами.
@@ -97,16 +99,18 @@ Class Model_Comment extends Model
     private function fillByRow($comment_row)
     {
         if (!empty($comment_row['id'])) {
-            $this->id = $comment_row['id'];
-            $this->user_id = $comment_row['user_id'];
-            $this->status = $comment_row['status'];
-            $this->text = $comment_row['text'];
-            $this->article_id = $comment_row['article_id'];
-            $this->root_id = $comment_row['root_id'];
-            $this->parent_id = $comment_row['parent_id'];
-            $this->dt_create = $comment_row['dt_create'];
-            $this->dt_update = $comment_row['dt_update'];
-            $this->is_removed = $comment_row['is_removed'];
+            $this->id           = $comment_row['id'];
+            $this->user_id      = $comment_row['user_id'];
+            $this->status       = $comment_row['status'];
+            $this->text         = $comment_row['text'];
+            $this->article_id   = $comment_row['article_id'];
+            $this->root_id      = $comment_row['root_id'];
+            $this->parent_id    = $comment_row['parent_id'];
+            $this->dt_create    = $comment_row['dt_create'];
+            $this->dt_update    = $comment_row['dt_update'];
+            $this->is_removed   = $comment_row['is_removed'];
+
+            $this->author       = Model_User::get($this->user_id);
         }
 
         return $this;
@@ -120,7 +124,6 @@ Class Model_Comment extends Model
             $comment_rows = DB::select()->from('Comments')->where('article_id', '=', $article_id)
                 ->where('is_removed', '=', 0)
                 ->order_by('id', 'ASC')
-                ->order_by('parent_id', 'ASC')
                 ->execute();
 
             foreach ($comment_rows as $comment_row) {

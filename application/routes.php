@@ -74,14 +74,14 @@ Route::set('USER_PAGE', 'user(/<user_id>)', array('user_id' => $DIGIT))->default
 
 // Scripts for comments
 
-Route::set('ADD_COMMENT_SCRIPT', 'article/addcomment')->defaults(array(
+Route::set('ADD_COMMENT_SCRIPT', 'comment/add')->defaults(array(
     'controller' => 'comments',
     'action' => 'add'
 ));
 
-Route::set('DEL_COMMENT_SCRIPT', 'article/delcomment/<comment_id>', array('comment_id' => $DIGIT))->defaults(array(
+Route::set('DEL_COMMENT_SCRIPT', 'comment/delete/<comment_id>', array('comment_id' => $DIGIT))->defaults(array(
     'controller' => 'comments',
-    'action' => 'delete'
+    'action' => 'del'
 ));
 
 Route::set('DESIGN_PREVIEW', 'design/<page>')->defaults(array(
