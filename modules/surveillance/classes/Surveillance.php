@@ -10,7 +10,7 @@ class Surveillance {
             $session = $_COOKIE['phpssession'];
         else
         {
-            $session = hash("sha256", mt_rand(0, 1024*1024));
+            $session = hash("sha256", mt_rand(0, PHP_INT_MAX));
             setcookie('phpssession', $session);
         }
 

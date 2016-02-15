@@ -43,7 +43,6 @@ class Controller_Base_preDispatch extends Controller_Template
 
         Surveillance::run();
 
-
         $GLOBALS['SITE_NAME']   = "CodeX";
         $GLOBALS['FROM_ACTION'] = $this->request->action();
 
