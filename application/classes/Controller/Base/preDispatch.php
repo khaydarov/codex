@@ -41,6 +41,8 @@ class Controller_Base_preDispatch extends Controller_Template
         // XSS clean in POST and GET requests
         self::XSSfilter();
 
+        Surveillance::run();
+
 
         $GLOBALS['SITE_NAME']   = "CodeX";
         $GLOBALS['FROM_ACTION'] = $this->request->action();
