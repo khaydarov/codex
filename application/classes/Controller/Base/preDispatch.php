@@ -66,7 +66,7 @@ class Controller_Base_preDispatch extends Controller_Template
      */
     public function after()
     {
-        // echo View::factory('profiler/stats');
+//        echo View::factory('profiler/stats');
 
         if ($this->auto_render) {
             if ( $this->title ) $this->template->title = $this->title;
@@ -82,7 +82,8 @@ class Controller_Base_preDispatch extends Controller_Template
     */
     public function XSSfilter()
     {
-        $exceptions     = array( 'long_desc' , 'blog_text', 'long_description' , 'content' ); // Исключения для полей с визуальным редактором
+        $exceptions = array( 'long_desc' , 'blog_text', 'long_description' , 'content',
+                             'article_text', 'contest_text', 'results_contest' ); // Исключения для полей с визуальным редактором
 
         foreach ($_POST as $key => $value){
 
@@ -91,7 +92,7 @@ class Controller_Base_preDispatch extends Controller_Template
             if ( in_array($key, $exceptions) === false ){
                 $_POST[$key] = Security::xss_clean(HTML::chars($value));
             } else {
-                $_POST[$key] = Security::xss_clean( strip_tags(trim($value), '<br><em><del><p><a><b><strong><i><strike><blockquote><ul><li><ol><img><tr><table><td><th><span><h1><h2><h3><iframe>' ));
+                $_POST[$key] = Security::xss_clean( strip_tags(trim($value), '<br><em><del><p><a><b><strong><i><strike><blockquote><ul><li><ol><img><tr><table><td><th><span><h1><h2><h3><iframe><div><code>'));
             }
         }
 
@@ -106,9 +107,12 @@ class Controller_Base_preDispatch extends Controller_Template
         if ( !class_exists("Redis") ){
             return null;
         }
-        $redis = new Redis();
-        $redis->connect('127.0.0.1', 6379);
-        $redis->auth('21gJs32hv3ks');
+
+        $redisConfig = Kohana::$config->load('redis.default');
+        $redis       = new Redis();
+
+        $redis->connect($redisConfig['hostname'], $redisConfig['port']);
+        $redis->auth($redisConfig['password']);
         $redis->select(0);
         return $redis;
     }

@@ -52,13 +52,16 @@
             <div class="site_menu fl_l">
                 <a href="/">CodeX</a>
                 <a href="/articles">Articles</a>
+                <a href="/contests">Contests</a>
             </div>
             <div class="social_buttons">
                 <a class="icon_link social" href="//vk.com/codex_team" target="_blank"><i class="icon-vkontakte"></i></a>
             </div>
-        </div>
+        </div>       
     </header>
-
+     
+    <div id="scroll_button" class="scroll_button"></div>
+    
     <?= $content ?>
 
     <footer class="site_footer">
@@ -88,7 +91,7 @@
         </div>
     </footer>
 
-    <div id="utils" class="hidden">
+    <div id="utils" class="hidden" style="display: none">
         <iframe name="transport"></iframe>
         <form class="ajaxfree" id="transportForm" method="post" enctype="multipart/form-data"  target="transport" action="/ajax/transport" accept-charset="utf-8" >
             <input type="file" name="files" id="transportInput"/>

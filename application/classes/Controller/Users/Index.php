@@ -10,7 +10,7 @@ class Controller_Users_Index extends Controller_Base_preDispatch
 		*/
 
 
-    public function action_showUser()
+    public function action_show()
     {
         $user_id = $this->request->param('user_id');
 
@@ -54,9 +54,9 @@ class Controller_Users_Index extends Controller_Base_preDispatch
             $vk_uri        = $this->methods->parseUri(Arr::get($_POST, 'vk_uri'));
 
             $fields = array('name'          => $name,
-                            'vk_uri'        => $vk_uri,
-                            'instagram_uri' => $instagram_uri,
-                            'bio'           => $bio);
+                'vk_uri'        => $vk_uri,
+                'instagram_uri' => $instagram_uri,
+                'bio'           => $bio);
 
             /**
              * Занесение данных в модель пользователя и в бд.
@@ -66,6 +66,4 @@ class Controller_Users_Index extends Controller_Base_preDispatch
             $this->redirect('user/');
         }
     }
-
-
 }

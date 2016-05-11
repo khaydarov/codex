@@ -41,7 +41,14 @@ Class Model_User extends Model
      */
     public static function findByAttribute($attr = 'id', $value = 0)
     {
-        $user = DB::select()->from('Users')->where($attr, '=', $value)->execute()->current();
+        $user = Dao_Users::select()->where($attr, '=', $value)->limit(1);
+
+        /** Cache with key 'uid' */
+        if ($attr == 'id') {
+            $user = $user->cached(Date::MINUTE * 5, $value);
+        }
+
+        $user = $user->execute();
 
         return self::rowToModel($user);
     }
@@ -92,6 +99,7 @@ Class Model_User extends Model
             $model->dt_update     = $user['dt_update'];
             $model->github_id     = $user['github_id'];
             $model->github_uri    = $user['github_uri'];
+            $model->vk_id         = $user['vk_id'];
             $model->vk_uri        = $user['vk_uri'];
             $model->fb_uri        = $user['fb_uri'];
             $model->instagram_uri = $user['instagram_uri'];
@@ -166,25 +174,27 @@ Class Model_User extends Model
      */
     public function update()
     {
-        if (DB::update('Users')->set(array(
-            'name'          => $this->name,
-            'github_id'     => $this->github_id,
-            'github_uri'    => $this->github_uri,
-            'photo'         => $this->photo,
-            'dt_update'     => $this->dt_update,        // TODO(#38) trigger
-            'photo_small'   => $this->photo_small,
-            'photo_big'     => $this->photo_big,
-            'role'          => $this->role,
-            'is_removed'    => $this->is_removed,
-            'vk_uri'        => $this->vk_uri,
-            'fb_uri'        => $this->fb_uri,
-            'instagram_uri' => $this->instagram_uri,
-            'bio'           => $this->bio
-        ))->where('id', '=', $this->id)->execute()
-        )
-            return true;
-        else
-            return false;
+        $update = Dao_Users::update()
+            ->set('name',          $this->name)
+            ->set('github_id',     $this->github_id)
+            ->set('github_uri',    $this->github_uri)
+            ->set('photo',         $this->photo)
+            ->set('dt_update',     $this->dt_update)
+            ->set('photo_small',   $this->photo_small)
+            ->set('photo_big',     $this->photo_big)
+            ->set('role',          $this->role)
+            ->set('is_removed',    $this->is_removed)
+            ->set('vk_id',         $this->vk_id)
+            ->set('vk_uri',        $this->vk_uri)
+            ->set('fb_uri',        $this->fb_uri)
+            ->set('instagram_uri', $this->instagram_uri)
+            ->set('bio',           $this->bio)
+            ->where('id', '=', $this->id)
+            ->clearcache($this->id)
+            ->execute();
+
+
+        return !!$update;
     }
 
     public function checkAccess($roles)
@@ -221,6 +231,7 @@ Class Model_User extends Model
 
         // занесения данных в бд
         $this->update();
+
     }
 
     /**

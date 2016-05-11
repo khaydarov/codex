@@ -139,6 +139,36 @@ input[disabled]
   position: absolute; left: 0; top: 0;
 }
 
+
+.scroll_button {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    padding: 32px 27px;
+    border-radius: 2px;
+    background: #eef2f5;
+    color: #bec4d2;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 150ms ease-in;
+}
+
+    .scroll_button:hover {
+        background-color: #e9edf3;
+        color: #b8beca;
+    }
+
+    .scroll_button:before {
+        font-family: "codex_ic";
+        content: '\e80f';
+    }
+
+    .scroll_button.show {
+        opacity: 1;
+    }
+
 .technic{
     display: inline-block;
     padding: 0 4px;
@@ -153,11 +183,11 @@ input[disabled]
 
 @font-face {
   font-family: 'codex_ic';
-  src: url('../fonts/codex_icons/codex_ic.eot?87250635');
-  src: url('../fonts/codex_icons/codex_ic.eot?87250635#iefix') format('embedded-opentype'),
-       url('../fonts/codex_icons/codex_ic.woff?87250635') format('woff'),
-       url('../fonts/codex_icons/codex_ic.ttf?87250635') format('truetype'),
-       url('../fonts/codex_icons/codex_ic.svg?87250635#codex_ic') format('svg');
+  src: url('../fonts/codex_icons/codex_ic.eot?2');
+  src: url('../fonts/codex_icons/codex_ic.eot?2#iefix') format('embedded-opentype'),
+       url('../fonts/codex_icons/codex_ic.woff?2') format('woff'),
+       url('../fonts/codex_icons/codex_ic.ttf?2') format('truetype'),
+       url('../fonts/codex_icons/codex_ic.svg?2#codex_ic') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -205,35 +235,38 @@ input[disabled]
 
 }
 
-.icon-vkontakte:before { content: '\e800'; } /* '' */
-.icon-twitter:before { content: '\e801'; } /* '' */
-.icon-facebook-squared:before { content: '\e802'; } /* '' */
-.icon-github-circled:before { content: '\e803'; } /* '' */
-.icon-heart:before { content: '\e804'; } /* '' */
-.icon-star:before { content: '\e805'; } /* '' */
-.icon-star-empty:before { content: '\e806'; } /* '' */
-.icon-search:before { content: '\e807'; } /* '' */
-.icon-rss:before { content: '\e808'; } /* '' */
-.icon-link:before { content: '\e809'; } /* '' */
-.icon-chat:before { content: '\e80a'; } /* '' */
-.icon-pencil:before { content: '\e80b'; } /* '' */
-.icon-pin:before { content: '\e80c'; } /* '' */
-.icon-attach:before { content: '\e80d'; } /* '' */
-.icon-tags:before { content: '\e80e'; } /* '' */
-.icon-up-big:before { content: '\e80f'; } /* '' */
-.icon-down-big:before { content: '\e810'; } /* '' */
-.icon-eye:before { content: '\e811'; } /* '' */
-.icon-instagram:before { content: '\e812'; } /* '' */
-.icon-briefcase:before { content: '\e813'; } /* '' */
-.icon-users:before { content: '\e814'; } /* '' */
-.icon-user:before { content: '\e815'; } /* '' */
-.icon-user-add:before { content: '\e816'; } /* '' */
-.icon-forward:before { content: '\e817'; } /* '' */
-.icon-cog-1:before { content: '\e818'; } /* '' */
-.icon-ok:before { content: '\e819'; } /* '' */
-.icon-cancel:before { content: '\e81a'; } /* '' */
-.icon-spin4:before { content: '\e81b'; } /* '' */
-.icon-picture:before { content: '\e81c'; } /* '' */
+.icon-vkontakte:before { content: '\e800'; }
+.icon-twitter:before { content: '\e801'; }
+.icon-facebook-squared:before { content: '\e802'; }
+.icon-github-circled:before { content: '\e803'; }
+.icon-heart:before { content: '\e804'; }
+.icon-star:before { content: '\e805'; }
+.icon-star-empty:before { content: '\e806'; }
+.icon-search:before { content: '\e807'; }
+.icon-rss:before { content: '\e808'; }
+.icon-link:before { content: '\e809'; }
+.icon-chat:before { content: '\e80a'; }
+.icon-pencil:before { content: '\e80b'; }
+.icon-pin:before { content: '\e80c'; }
+.icon-attach:before { content: '\e80d'; }
+.icon-tags:before { content: '\e80e'; }
+.icon-up-big:before { content: '\e80f'; }
+.icon-down-big:before { content: '\e810'; }
+.icon-eye:before { content: '\e811'; }
+.icon-instagram:before { content: '\e812'; }
+.icon-briefcase:before { content: '\e813'; }
+.icon-users:before { content: '\e814'; }
+.icon-user:before { content: '\e815'; }
+.icon-user-add:before { content: '\e816'; }
+.icon-forward:before { content: '\e817'; }
+.icon-cog-1:before { content: '\e818'; }
+.icon-ok:before { content: '\e819'; }
+.icon-cancel:before { content: '\e81a'; }
+.icon-spin4:before { content: '\e81b'; }
+.icon-picture:before { content: '\e81c'; }
+.icon-cog:before { content: '\e81d'; }
+.icon-paper-plane:before { content: '\e81e'; }
+.icon-facebook:before { content: '\e81f'; }
 
 .error_alert{
     background: #FDF4F4;
@@ -379,6 +412,7 @@ html {
 }
 .page_header h1{
     font-size: 26px;
+    line-height: 1.2em;
 }
 .page_header .description{
     max-width: 500px;
@@ -758,6 +792,18 @@ html {
     padding-left: 30px;
 }
 
+.edit_article_form label {
+    margin: 30px 0 24px 0;
+    display: block;
+}
+.edit_article_form input[type="text"] {
+    margin-bottom: 25px;
+}
+.edit_article_form p {
+    margin: 30px 0;
+    display: block;
+}
+
 .page_block{
     margin-top: 50px;
 }
@@ -964,6 +1010,14 @@ html {
     .article_content li{
         margin: 0.2em 0;
     }
+    .article_content blockquote{
+        margin: 30px 0;
+        padding: 45px 60px;
+        border-top: 2px solid #EDEFF1;
+        border-bottom: 2px solid #EDEFF1;
+        font-size: 1.2em;
+        line-height: 1.7em;
+    }
 
 .profile_join_requests{
     color: #9A9A9A;
@@ -1112,7 +1166,6 @@ html {
 
 /*** Contests ***/
 .contest{
-    margin: 0 30px;
     padding: 30px 0;
 }
 .contest .disclaimer, .contest_alert a{
@@ -1149,6 +1202,20 @@ html {
         margin-bottom: 70px;
     }
 
+.contest img{
+    max-width: 100%;
+}
+
+.contest .result{
+    padding-top: 80px;
+}
+    .contest .result p,
+    .contest .result h2{
+        margin: 25px 70px;
+    }
+        .contest .result h2{
+            margin-bottom: 2em;
+        }
 
 
 .contest .big_header{
@@ -1176,10 +1243,186 @@ html {
         font-weight: bold;
         line-height: 1.1em;
     }
+.contest .winner{
+    max-width: 300px;
+    margin: 80px auto;
+    text-align: center;
+}
+    .contest .title{
+        color: #aeb5bb;
+        letter-spacing: 1px;
+        font-size: 13px;
+    }
+    .contest .name{
+        margin: 10px 0 7px;
+        color: #495d6f;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .contest .nick{
+        text-decoration: none;
+    }
+        .contest .nick::before,
+        .contest .nick::after{
+            content: '';
+            display: inline-block;
+            margin: 0 4px;
+            width: 55px;
+            height: 26px;
+            background: url('../img/branches.png') no-repeat;
+            vertical-align: top;
+        }
+            .contest .nick::after{
+                background-position: -55px 0;
+            }
+    .contest .toggler{
+        display: inline-block;
+        margin-top: 40px;
+        color: #aeb5bb;
+        text-decoration: none;
+        border-bottom: 1px solid #E9ECF1;
+    }
+        .contest .toggler i{
+            font-size: 12px;
+        }
+
+/*** contest list ***/
+.contests_list {
+    position: relative;
+    margin: 0 30px;
+    border-top: 1px solid #d2dde5;
+}
+    .contests_list::before {
+        display: block;
+        content: attr(data-heading);
+        position: absolute;
+        left: 97px;
+        top: -14px;
+        padding: 3px 15px;
+        background: #fff;
+        color: #b0c4d3;
+        font-variant: small-caps;
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .contests_list .item {
+        padding: 50px 0;
+    }
+    .contests_list .date {
+        float: left;
+        width: 60px;
+        color: #a8adb6;
+        text-align: center;
+    }
+        .contests_list time:last-child:before{
+            content: '—';
+            display: block;
+            line-height: .8em
+        }
+
+    .contests_list .icon {
+        width: 79px;
+        height: 52px;
+        margin: 0 30px;
+    }
+        .contests_list .icon img{
+            width: 100%;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+        }
+    .contests_list .title {
+        display: inline-block;
+        margin: 0 0 8px;
+        font-size: 18px;
+        color: inherit;
+        text-decoration: none;
+        font-weight: bold;
+    }
+        .contests_list .title:hover {
+            color: #4888DC;
+        }
+
+
 /*** end of Contests ***/
 
 
 
+.follow_us{
+    width: 33%;
+    margin-top: 27px;
+    margin-left: 50px;
+    color: #7183a1;
+}
+    .follow_us a{
+        display: inline-block;
+        margin-top: 15px;
+        white-space: nowrap;
+    }
+        .follow_us a i{
+            vertical-align: middle;
+            margin-right: 14px;
+        }
+        .follow_us a span{
+            display: inline-block;
+            vertical-align: middle;
+            text-decoration: underline;
+        }
+
+.icon_telegram{
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background: url('../img/icon_telegram.png') no-repeat;
+}
+
+
+.random_articles {
+    padding: 35px 0;
+    margin: 0 70px;
+    max-width: 600px;
+}
+    .random_articles a{
+        margin-bottom: 12px;
+        display: inline-block;
+    }
+    .random_articles h3{
+        margin-bottom: 20px;
+        font-size: 1.5em;
+    }
+    .random_articles li{
+        list-style: none;
+    }
+
+
+
+.sharing{
+    margin: 50px 70px 0;
+    padding: 30px 40px;
+    border-radius: 3px;
+    background: #f1f5f8;
+    color: #616C98;
+}
+    .sharing .but{
+        margin-left: 13px;
+        cursor: pointer;
+        color: #a1acc1;
+        font-size: 20px;
+    }
+        .sharing .but:hover{color: #5D75BD;}
+        .sharing .tw:hover{color: #6E98FD;}
+        .sharing .tg:hover{color: #41ADFF;}
+        .sharing .tg{font-size: 17px;}
+
+    .sharing .main_but{
+        margin: -0.6em 12px 0 0;
+        padding: 10px 24px;
+        border-radius: 25px;
+        background: #607cb6;
+        color: #fff;
+    }
+        .sharing .main_but:hover{background: #546fa9;}
+        .sharing .main_but i{margin: 0 4px 0 -5px;}
 
 
 @-webkit-keyframes wobble {
@@ -1309,6 +1552,9 @@ html {
     .site_header{
         padding: 0 25px;
     }
+    .site_header .icon_link{
+        font-size: 14px;
+    }
     .site_menu{
         margin: 0;
         white-space: nowrap;
@@ -1316,7 +1562,8 @@ html {
     }
         .site_menu a{
             padding: 18px 0;
-            margin-right: 20px;
+            margin-right: 17px;
+            font-size: 15px;
         }
         .site_header .social_buttons{
             display: none;
@@ -1325,7 +1572,17 @@ html {
         .site_header .login{
             margin-right: 0;
         }
-
+        .site_header .profile{
+            padding-left: 0;
+        }
+        .site_header .ava, .site_header .ava > img{
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+        }
+            .site_header .ava > img{
+                vertical-align: top;
+            }
     .clarity_page{
         padding: 50px 25px;
     }
@@ -1375,7 +1632,7 @@ html {
 
     .big_header{
         padding: 30px 0;
-        font-size: 40px;
+        font-size: 33px;
     }
     .article_info{
         margin-left: 0;
@@ -1405,7 +1662,11 @@ html {
     .article_content{
         margin: 0;
         font-size: 16px;
-
+    }
+    .article_content blockquote{
+        font-size: 1.1em;
+        line-height: 1.5em;
+        padding: 20px;
     }
 
     .breadcrumb{
@@ -1464,10 +1725,76 @@ html {
     }
     .contest_alert a{
         margin-top: 20px;
-
     }
-}
+    .contest .article_content{
+        padding: 0 30px;
+    }
+    .contest .result p,
+    .contest .result h2{
+        margin: 20px 30px;
+    }
 
+    .contests_list .date,
+    .contests_list .icon{
+        float: none;
+    }
+    .contests_list .date{
+        width: auto;
+    }
+    .contests_list time:last-child:before{
+        display: inline-block;
+        margin: 0 5px 0 2px;
+    }
+    .contests_list::before{
+        left: 50%;
+        width: 50px;
+        padding: 3px 0;
+        margin-left: -25px;
+        text-align: center;
+    }
+    .contests_list .item{
+        padding: 25px 0
+    }
+    .contests_list .icon{
+        display: block;
+        margin: 15px auto 30px;
+    }
+
+    .follow_us{
+        width: auto;
+        float: none;
+        margin: 0 0 50px 0;
+    }
+
+    .scroll_button{
+        left: auto;
+        bottom: 0;
+        right: 0;
+        padding: 12px 14px;
+        font-size: 12px;
+    }
+
+    .random_articles {margin: 0}
+
+    .sharing{
+        margin: 30px 0 0;
+        padding:  30px;
+        text-align: center;
+    }
+    .sharing .main_but{
+        float: none;
+        display: block;
+        margin: 0 0 15px;
+    }
+    .sharing .but{
+        display: inline-block;
+        float: none;
+        margin: 0 7px 18px;
+    }
+
+
+
+}
 
 
 
@@ -1495,5 +1822,19 @@ html {
     .contest .line:before{
         background: #fff url('../img/contest_icon_goblet@2x.png') no-repeat 50% 50%;
         background-size: 18px auto;
+    }
+
+    .contest .nick::before,
+    .contest .nick::after{
+        background: url('../img/branches@2x.png') no-repeat;
+        background-size: 110px auto;
+    }
+    .contest .nick::after{
+        background-position: -55px 0;
+    }
+    .icon_telegram{
+        background: url('../img/icon_telegram@2x.png') no-repeat;
+        background-size: 28px 28px;
+
     }
 }
