@@ -189,6 +189,12 @@ Route::set('ARTICLE_EDITOR_SAVE_IMG', 'editorsaveimg', array())->defaults(array(
     'action' => 'saveEditorImg'
 ));
 
+// surveillance plugin
+Route::set('SURVEILLANCE', 'surv/<action>/<auth>')->defaults(array(
+	'controller' => 'surveillance',
+	'action' => 'send'
+));
+
 /**
 * Core
 */

@@ -14,6 +14,8 @@ class Controller_Base_preDispatch extends Controller_Template
      */
     protected $user;
 
+    protected $surveillance;
+
 
     /**
      * The before() method is called before your controller action.
@@ -41,7 +43,9 @@ class Controller_Base_preDispatch extends Controller_Template
         // XSS clean in POST and GET requests
         self::XSSfilter();
 
-        Surveillance::run();
+        $survConfig = Kohana::$config->load('surveillance.default');
+        $this->surveillance = new Surveillance($survConfig['password']);
+        $this->surveillance->run();
 
         $GLOBALS['SITE_NAME']   = "CodeX";
         $GLOBALS['FROM_ACTION'] = $this->request->action();
